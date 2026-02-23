@@ -65,6 +65,12 @@
       margin-bottom: 18px;
     }
 
+    .topbar-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .logo {
       font-size: clamp(1.3rem, 3vw, 1.9rem);
       font-weight: 900;
@@ -86,6 +92,11 @@
 
     .back-link:hover {
       transform: translateY(-2px);
+    }
+
+    .service-link {
+      background: linear-gradient(120deg, #2f4462, #21354f);
+      border: 1px solid rgba(141, 173, 214, 0.45);
     }
 
     .hero {
@@ -544,12 +555,15 @@
   <main class="container" id="top">
     <div class="topbar">
       <div class="logo">Ишимура лайф Клиника</div>
-      <a class="back-link" href="#top">Женская клиника</a>
+      <div class="topbar-actions">
+        <a class="back-link service-link" href="order.html">Заказать выезд мастера</a>
+        <a class="back-link" href="#top">Женская клиника</a>
+      </div>
     </div>
 
     <section class="hero">
       <div>
-        <h1>Женская урологическая клиника с заботой и деликатным подходом</h1>
+        <h1>Женская клиника с заботой и деликатным подходом</h1>
         <p>
           Профилактика, диагностика и консультации в спокойной атмосфере.
           Объясняем без сложных терминов, работаем бережно и с уважением к вашему комфорту.
@@ -713,6 +727,21 @@
   </main>
 
   <script>
+    const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1475522095923593306/Rwiwmq7VTsFuEYemy7ksJZxkuqfN6dw1winZKe9eNxq8hmSo_hraJ_3bYQWkcnqdTudu";
+
+    async function sendToDiscord(title, lines) {
+      const content = ["**" + title + "**", ...lines].join("\n");
+      const response = await fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+      });
+
+      if (!response.ok) {
+        throw new Error("Discord webhook error: " + response.status);
+      }
+    }
+
     const sessionButton = document.getElementById("bookSessionBtn");
     const modal = document.getElementById("bookingModal");
     const closeModalBtn = document.getElementById("closeModalBtn");
@@ -894,10 +923,22 @@
       }
     });
 
-    bookingForm.addEventListener("submit", (event) => {
+    bookingForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const name = document.getElementById("clientName").value.trim();
       const phone = document.getElementById("clientPhone").value.trim();
+      const comment = document.getElementById("clientComment").value.trim();
+
+      try {
+        await sendToDiscord("Новая заявка с сайта (Запись на сеанс)", [
+          "Имя: " + (name || "—"),
+          "Телефон: " + (phone || "—"),
+          "Комментарий: " + (comment || "—"),
+          "Страница: clinic.html"
+        ]);
+      } catch (error) {
+        console.error(error);
+      }
 
       alert("Спасибо! Заявка отправлена. Мы свяжемся с вами: " + phone);
       status.textContent = "Заявка оформлена на имя " + name + ". Ожидайте звонок администратора.";
