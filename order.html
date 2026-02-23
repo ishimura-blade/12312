@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ишимура лайф Клиника — Заказ выезда мастера</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+    :root {
+      --bg-a: #0d1422;
+      --bg-b: #121f33;
+      --bg-c: #0b1a2b;
+      --ink: #d9e6f7;
+      --ink-soft: #9fb4cf;
+      --brand: #5f8fff;
+      --brand-2: #59d0c5;
+      --card: rgba(16, 30, 49, 0.84);
+      --line: rgba(156, 188, 223, 0.24);
+      --ok: #48d8a6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(95, 143, 255, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(89, 208, 197, 0.14), transparent 40%),
+        linear-gradient(160deg, var(--bg-a), var(--bg-b), var(--bg-c));
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(900px, 92%);
+      margin: 0 auto;
+      padding: 28px 0 42px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .logo {
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 900;
+      font-family: "Cormorant Garamond", serif;
+      color: var(--brand);
+      text-shadow: 0 3px 18px rgba(95, 143, 255, 0.22);
+    }
+
+    .back-link {
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(120deg, var(--brand), var(--brand-2));
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 14px 32px rgba(2, 10, 20, 0.45);
+      backdrop-filter: blur(4px);
+    }
+
+    h1 {
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      margin-bottom: 8px;
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .sub {
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: #b7cbe4;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(138, 173, 207, 0.4);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+      color: #d7e6f7;
+      background: rgba(10, 21, 35, 0.7);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 11px 14px;
+      color: #fff;
+      font-weight: 700;
+      background: linear-gradient(120deg, var(--brand), var(--brand-2));
+    }
+
+    .status {
+      color: var(--ok);
+      font-weight: 700;
+      min-height: 20px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 740px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="topbar">
+      <div class="logo">Ишимура лайф Клиника</div>
+      <a class="back-link" href="clinic.html">Назад на главную</a>
+    </div>
+
+    <section class="panel">
+      <h1>Заказ Выезда Мастера</h1>
+      <p class="sub">Заполните заявку, и администратор подтвердит выезд мастера по вашему адресу.</p>
+
+      <form id="visitForm">
+        <div class="grid">
+          <div class="field">
+            <label for="name">Ваше имя</label>
+            <input id="name" name="name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" placeholder="+7..." required>
+          </div>
+
+          <div class="field">
+            <label for="master">Мастер</label>
+            <select id="master" name="master" required>
+              <option value="">Выберите мастера</option>
+              <option>Мастер Никита</option>
+              <option>Мастер Дмитрий</option>
+              <option>Мастер Димочка 3</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date">Дата и время</label>
+            <input id="date" name="date" type="datetime-local" required>
+          </div>
+
+          <div class="field full">
+            <label for="address">Адрес выезда</label>
+            <input id="address" name="address" type="text" required>
+          </div>
+
+          <div class="field full">
+            <label for="comment">Комментарий</label>
+            <textarea id="comment" name="comment" placeholder="Домофон, этаж, пожелания..."></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit">Оформить выезд</button>
+          <div class="status" id="status"></div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1475522095923593306/Rwiwmq7VTsFuEYemy7ksJZxkuqfN6dw1winZKe9eNxq8hmSo_hraJ_3bYQWkcnqdTudu";
+
+    async function sendToDiscord(title, lines) {
+      const content = ["**" + title + "**", ...lines].join("\n");
+      const response = await fetch(DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+      });
+
+      if (!response.ok) {
+        throw new Error("Discord webhook error: " + response.status);
+      }
+    }
+
+    const form = document.getElementById("visitForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const master = document.getElementById("master").value;
+      const phone = document.getElementById("phone").value.trim();
+      const date = document.getElementById("date").value;
+      const address = document.getElementById("address").value.trim();
+      const comment = document.getElementById("comment").value.trim();
+
+      try {
+        await sendToDiscord("Новая заявка с сайта (Выезд мастера)", [
+          "Имя: " + (name || "—"),
+          "Телефон: " + (phone || "—"),
+          "Мастер: " + (master || "—"),
+          "Дата/время: " + (date || "—"),
+          "Адрес: " + (address || "—"),
+          "Комментарий: " + (comment || "—"),
+          "Страница: order.html"
+        ]);
+      } catch (error) {
+        console.error(error);
+      }
+
+      alert("Заявка на выезд отправлена. " + master + " свяжется с вами: " + phone);
+      status.textContent = "Заявка принята. Ожидайте звонок администратора.";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
