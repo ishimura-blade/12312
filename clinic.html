@@ -65,6 +65,31 @@
       margin-bottom: 18px;
     }
 
+    .birthday-banner {
+      margin: 0 0 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: linear-gradient(120deg, rgba(95, 143, 255, 0.18), rgba(89, 208, 197, 0.16));
+      border: 1px solid rgba(152, 190, 230, 0.4);
+      box-shadow: 0 10px 24px rgba(2, 10, 20, 0.35);
+      text-align: center;
+      color: #dfeaff;
+    }
+
+    .birthday-banner strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+      letter-spacing: 0.3px;
+      display: block;
+    }
+
+    .birthday-banner span {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+    }
+
     .topbar-actions {
       display: flex;
       gap: 8px;
@@ -290,6 +315,23 @@
       font: inherit;
       color: #d7e6f7;
       background: rgba(10, 21, 35, 0.7);
+    }
+
+    .form-field select {
+      width: 100%;
+      border: 1px solid rgba(138, 173, 207, 0.4);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      color: #d7e6f7;
+      background: rgba(10, 21, 35, 0.7);
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #9fb4cf 50%),
+        linear-gradient(135deg, #9fb4cf 50%, transparent 50%);
+      background-position: calc(100% - 16px) 50%, calc(100% - 10px) 50%;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
     }
 
     .form-field textarea {
@@ -561,9 +603,14 @@
       </div>
     </div>
 
+    <section class="birthday-banner">
+      <strong>С днем рождения, СВО — 4 года!</strong>
+      <span>Поздравляем и желаем крепкого здоровья.</span>
+    </section>
+
     <section class="hero">
       <div>
-        <h1>Женская урологическая клиника с заботой и деликатным подходом</h1>
+        <h1>Женская клиника с заботой и деликатным подходом</h1>
         <p>
           Профилактика, диагностика и консультации в спокойной атмосфере.
           Объясняем без сложных терминов, работаем бережно и с уважением к вашему комфорту.
@@ -584,7 +631,7 @@
       <div class="custom-note-box">
         <span class="custom-note-label">Важная информация</span>
         <!-- Отредактируйте текст ниже прямо в коде -->
-        <p class="custom-note-text"><strong>ВАЖНО:</strong> По вопросам интимного массажа обращаться к мастеру Никите</p>
+        <p class="custom-note-text"><strong>ВАЖНО:</strong> Поздравление с днем рождения: СВО — 4 года!</p>
       </div>
       <div class="team-grid">
         <article class="team-card">
@@ -617,18 +664,18 @@
               <button class="mini-btn profile-btn" data-master="dimochka3" type="button">Профиль</button>
             </div>
           </div>
-          <div class="team-name">Мастер Димочка </div>
+          <div class="team-name">Мастер Димочка</div>
           <div class="team-role">Антистресс-сеансы и деликатные восстановительные практики</div>
         </article>
         <article class="team-card">
           <div class="team-media">
-            <img src="assets/images/5.png" alt="Фото мастера Евгения ">
+            <img src="assets/images/5.png" alt="Фото мастера Евгения 4">
             <div class="mini-actions">
               <button class="mini-btn review-btn" data-master="evgeniy4" type="button">Отзывы</button>
               <button class="mini-btn profile-btn" data-master="evgeniy4" type="button">Профиль</button>
             </div>
           </div>
-          <div class="team-name">Мастер Евгений </div>
+          <div class="team-name">Мастер Евгений</div>
           <div class="team-role">Восстановительные сеансы, мягкие релакс-практики</div>
         </article>
       </div>
@@ -703,6 +750,27 @@
           <div class="form-field">
             <label for="clientPhone">Телефон</label>
             <input id="clientPhone" name="phone" type="tel" placeholder="+7..." required>
+          </div>
+          <div class="form-field">
+            <label for="clientMaster">Мастер</label>
+            <select id="clientMaster" name="master" required>
+              <option value="">Выберите мастера</option>
+              <option>Мастер Никита</option>
+              <option>Мастер Дмитрий</option>
+              <option>Мастер Димочка</option>
+              <option>Мастер Евгений</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="clientService">Услуга</label>
+            <select id="clientService" name="service" required>
+              <option value="">Выберите услугу</option>
+              <option>Экспресс-сеанс (20 мин)</option>
+              <option>Углубленный сеанс (40 мин)</option>
+              <option>Консультация специалиста</option>
+              <option>УЗИ и базовая диагностика</option>
+              <option>Check-up "Женский баланс"</option>
+            </select>
           </div>
           <div class="form-field">
             <label for="clientComment">Комментарий</label>
@@ -805,10 +873,10 @@
         ]
       },
       dimochka3: {
-        title: "Отзывы о мастере Димочке 3",
+        title: "Отзывы о мастере Димочке",
         items: [
           {
-            text: "Бабушка Жанна, 71: \"Димочка 3 очень внимательный, после сеанса настроение отличное.\"",
+            text: "Бабушка Жанна, 71: \"Димочка очень внимательный, после сеанса настроение отличное.\"",
             image: "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@latest/color/svg/1F475.svg"
           },
           {
@@ -822,10 +890,10 @@
         ]
       },
       evgeniy4: {
-        title: "Отзывы о мастере Евгении 4",
+        title: "Отзывы о мастере Евгении",
         items: [
           {
-            text: "Бабушка Клара, 72: \"Евгений 4 очень мягко работает, после сеанса легкость.\"",
+            text: "Бабушка Клара, 72: \"Евгений очень мягко работает, после сеанса легкость.\"",
             image: "https://cdn.jsdelivr.net/gh/hfg-gmuend/openmoji@latest/color/svg/1F475-1F3FB.svg"
           },
           {
@@ -862,7 +930,7 @@
         ]
       },
       dimochka3: {
-        title: "Профиль: Мастер Димочка ",
+        title: "Профиль: Мастер Димочка",
         items: [
           "Специализация: антистресс-сеансы и восстановление",
           "Стаж: 5 лет",
@@ -872,7 +940,7 @@
         ]
       },
       evgeniy4: {
-        title: "Профиль: Мастер Евгений 4",
+        title: "Профиль: Мастер Евгений",
         items: [
           "Специализация: восстановительные и релакс-сеансы",
           "Стаж: 4 года",
@@ -965,12 +1033,16 @@
       event.preventDefault();
       const name = document.getElementById("clientName").value.trim();
       const phone = document.getElementById("clientPhone").value.trim();
+      const master = document.getElementById("clientMaster").value;
+      const service = document.getElementById("clientService").value;
       const comment = document.getElementById("clientComment").value.trim();
 
       try {
         await sendToDiscord("Новая заявка с сайта (Запись на сеанс)", [
           "Имя: " + (name || "—"),
           "Телефон: " + (phone || "—"),
+          "Мастер: " + (master || "—"),
+          "Услуга: " + (service || "—"),
           "Комментарий: " + (comment || "—"),
           "Страница: clinic.html"
         ]);
